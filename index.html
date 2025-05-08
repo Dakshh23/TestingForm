@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Code Sometimes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wcs-logo">
+        <h2>WCS</h2>
+        <span>We Code Sometimes</span>
+    </div>
+    <form action="" id="resgsform">
+        <h1>Sign Up</h1>
+        <label for="usrname">Username:</label>      
+        <input type="text" title="usrname" id="usrname" placeholder="username" required></input></br>
+        <label for="email">Email:</label>
+        <input type="email" title="email" id="email" placeholder="email" required></input></br>
+        <label for="password">Password:</label>
+        <input type="password" title="pass" id="password" placeholder="password" autocomplete="on" required></input></br>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p id="resp"></p>
+
+    <script>
+        const form = document.getElementById("resgsform");
+        const resp = document.getElementById("resp");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById("usrname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                console.log('Sending request to server...');
+                const response = await fetch('testingform-production.up.railway.app/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error response:', errorText);
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.success) {
+                    resp.innerHTML = data.message;
+                    resp.style.color = "green";
+                    form.reset();
+                } else {
+                    resp.innerHTML = data.message || 'Registration failed';
+                    resp.style.color = "red";
+                }
+            } catch (e) {
+                console.error('Full error:', e);
+                resp.innerHTML = `Error: ${e.message}. Please check the console for details.`;
+                resp.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

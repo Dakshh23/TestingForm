@@ -1,0 +1,179 @@
+/* WCS - We Code Sometimes Theme */
+:root {
+    --wcs-primary: #4f46e5;
+    --wcs-secondary: #4338ca;
+    --wcs-success: #059669;
+    --wcs-error: #dc2626;
+    --wcs-bg: #f8fafc;
+    --wcs-text: #1e293b;
+    --wcs-gradient: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color: var(--wcs-text);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+form h1 {
+    background: var(--wcs-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--wcs-text);
+    font-size: 0.95rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.875rem;
+    margin-bottom: 1.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+input:hover {
+    border-color: #cbd5e1;
+    background: #fff;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--wcs-primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    background: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--wcs-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#resp {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
+
+/* WCS Logo */
+.wcs-logo {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.wcs-logo h2 {
+    background: var(--wcs-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.wcs-logo span {
+    color: var(--wcs-secondary);
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    form {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    input, button {
+        padding: 0.75rem;
+    }
+
+    .wcs-logo h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Success and Error States */
+#resp[style*="green"] {
+    background: #ecfdf5;
+    border-color: #059669;
+    color: #059669;
+}
+
+#resp[style*="red"] {
+    background: #fef2f2;
+    border-color: #dc2626;
+    color: #dc2626;
+} 
