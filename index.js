@@ -5,6 +5,30 @@ const zod=require("zod");
 const cors=require("cors");
 app.use(cors());
 // Add CORS middleware
+// CORS configuration
+app.use((req, res, next) => {
+    const allowedOrigins = [
+        'https://testingform-production.up.railway.app',
+        'http://localhost:3000',
+        'http://localhost:8000'
+    ];
+    const origin = req.headers.origin;
+    
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
+    next();
+});
+
 const PORT=process.env.PORT || 3000;
 
 
